@@ -117,7 +117,7 @@ function simulate() {
         }
     }
     canvas.height = roundUp100(maxY) - roundDown100(minY)
-    canvas.width = roundUp100(maxX) - roundDown100(minY)
+    canvas.width = roundUp100(maxX) - roundDown100(minX)
     //Shift all points so they all appear on the canvas
      for (i=0 ; i<pointsArrayX.length ; i++) {
          pointsArrayX[i] -= roundDown100(minX)
