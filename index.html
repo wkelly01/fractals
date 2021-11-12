@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Random Walks - Web v2</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<table style="width: 100%">
+    <tr>
+        <td style="width: 30%"><div class=input>Value 1:  <input id="val1Input" maxlength="2" size="1" value=1> </input> </div> </td>
+        <td><div id=T1>T1 := ( <input id="a1" maxlength="4" size="2" value=0></input>x + <input id="b1" maxlength="4" size="2" value=0></input>y , <input id="c1" maxlength="4" size="2" value=0></input>x + <input id="d1" maxlength="4" size="2" value=0></input>y ) + ( <input id="e1" maxlength="4" size="2" value=0></input> , <input id="f1" maxlength="4" size="2" value=0></input> ) </div> </td>  
+    </tr>
+    <tr>
+        <td><div class=input>Value 2:  <input id="val2Input" maxlength="2" size="1" value=1> </input> </div> </td>
+        <td><div id=T2>T2 := ( <input id="a2" maxlength="4" size="2" value=0></input>x + <input id="b2" maxlength="4" size="2" value=0></input>y , <input id="c2" maxlength="4" size="2" value=0></input>x + <input id="d2" maxlength="4" size="2" value=0></input>y ) + ( <input id="e2" maxlength="4" size="2" value=0></input> , <input id="f2" maxlength="4" size="2" value=0></input> ) </div> </td>
+    </tr>
+    <tr>
+        <td><div class=input>Value 3:  <input id="val3Input" maxlength="2" size="1" value=1> </input> </div> </td>
+        <td><div id=T3>T3 := ( <input id="a3" maxlength="4" size="2" value=0></input>x + <input id="b3" maxlength="4" size="2" value=0></input>y , <input id="c3" maxlength="4" size="2" value=0></input>x + <input id="d3" maxlength="4" size="2" value=0></input>y ) + ( <input id="e3" maxlength="4" size="2" value=0></input> , <input id="f3" maxlength="4" size="2" value=0></input> ) </div> </td>
+    </tr>
+    <tr>
+        <td><div class=input>Value 4:  <input id="val4Input" maxlength="2" size="1" value=0> </input> </div></td>
+        <td><div id=T4>T4 := ( <input id="a4" maxlength="4" size="2" value=0></input>x + <input id="b4" maxlength="4" size="2" value=0></input>y , <input id="c4" maxlength="4" size="2" value=0></input>x + <input id="d4" maxlength="4" size="2" value=0></input>y ) + ( <input id="e4" maxlength="4" size="2" value=0></input> , <input id="f4" maxlength="4" size="2" value=0></input> ) </div> </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button onclick="Sierpinski()">Sierpinski Triangle</button>
+        <button onclick="Fern()">Barnsley Fern</button>
+        </td>
+</tr>
+</table>
+<div class=input>Iterations:  <input id="iterations" maxlength="7" size="4" value=50000> </input> </div>
+<button onclick="simulate()">Simulate</button>
+
+<br>
+<canvas id="myCanvas" width="250" height="250"></canvas>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
