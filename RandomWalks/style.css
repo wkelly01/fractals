@@ -1,0 +1,13 @@
+#myCanvas {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid blue;
+}
+
+.input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
