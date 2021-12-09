@@ -1,8 +1,10 @@
 .title {
     text-align: center;
+    font-weight: bold;
     font-size: 2em;
     padding-left: 5%;
     padding-right: 5%;
+    background-color: #8B72AD
 }
 
 .abstract {
@@ -11,12 +13,14 @@
 #title {
     font-weight: bold;
     font-size: 1.2em;
+    background-color: #FEE276;
 }
 
 #desc {
     text-align: justify;
     padding-left: 5%;
     padding-right: 5%;
+    background-color: #FFF9E4;
 }
 table {
     width: 100%;
@@ -34,5 +38,17 @@ td.side {
     width: 10%;
     padding-left: 0px;
     padding-right: 0px;
-    background-color:Tomato
+}
+
+body {
+        background-image: linear-gradient(to right,
+      #461D7C,
+      #461D7C 9.75%,
+      #FFFFFF 9.75%,
+      #FFFFFF 10.25%,     
+      #FDD023 10.25%,
+      #FDD023 89.75%,
+      #FFFFFF 89.75%,
+      #FFFFFF 90.25%,
+      #461D7C 90.25%);
 }
