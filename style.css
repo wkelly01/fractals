@@ -7,8 +7,6 @@
 
 .abstract {
   text-align: center;
-  padding-left: 20%;
-  padding-right: 20%;
 }
 #title {
     font-weight: bold;
@@ -23,13 +21,18 @@
 table {
     width: 100%;
 }
-th, td {
+td.inside {
     padding: 15px;
-    padding-left: 100px;
-    padding-right: 100px;
 }
 
 img {
     width: 200px;
     height: 200px;
+}
+
+td.side {
+    width: 10%;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:Tomato
 }
