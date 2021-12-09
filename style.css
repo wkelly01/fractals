@@ -1,0 +1,33 @@
+.title {
+    text-align: center;
+    font-size: 2em;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.abstract {
+  text-align: center;
+}
+#title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#desc {
+    text-align: justify;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+table {
+    width: 100%;
+}
+th, td {
+    padding: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
