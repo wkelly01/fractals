@@ -9,7 +9,7 @@ canvas.width=window.innerHeight;
 let pointsArrayX, pointsArrayY //arrays to hold points
 let fillColor //??
 let point //starting point
-let iterations = 100000 //Number of iterations of the random walks
+let iterations = 1000000 //Number of iterations of the random walks
 
 setInterval (simulate , 1000)
 //simulate()
