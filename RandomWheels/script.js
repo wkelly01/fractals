@@ -1,34 +1,39 @@
 let canvas = document.getElementById("myCanvas");
-let canvasWidth = canvas.width;
-let canvasHeight = canvas.height;
 let ctx = canvas.getContext("2d");
 
-let fillColor
-let point
-let iterations, val1Input, val2Input, val3Input
+//set canvas height based on window size
+canvas.height=window.innerHeight;
+canvas.width=window.innerHeight;
+
+//declaration of global variabls
+let pointsArrayX, pointsArrayY //arrays to hold points
+let fillColor //??
+let point //starting point
+let iterations = 100000 //Number of iterations of the random walks
+
+setInterval (simulate , 1000)
+//simulate()
 
 function T1(x,y) {
     point[0] = ((Math.cos(Math.PI / 3) * x) + (Math.sin(Math.PI / 3) * y));
     point[1] = ((-Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y));
 }
 function T2(x,y) {
-    point[0] = ((Math.cos(Math.PI / 3) * x) + (Math.sin(Math.PI / 3) * y)) + (1/2 * canvasWidth);
-    point[1] = ((-Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) + (1/2 * canvasWidth);
+    point[0] = ((Math.cos(Math.PI / 3) * x) + (Math.sin(Math.PI / 3) * y)) + (1/2);
+    point[1] = ((-Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) + (1/2);
 }
 function T3(x,y) {
-    point[0] = ((Math.cos(Math.PI / 3) * x) + (Math.sin(Math.PI / 3) * y)) - (1/2 * canvasWidth);
-    point[1] = ((-Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) - (1/2 * canvasWidth);
+    point[0] = ((Math.cos(Math.PI / 3) * x) + (Math.sin(Math.PI / 3) * y)) - (1/2);
+    point[1] = ((-Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) - (1/2);
 }
 
 function simulate() {
     //Reset the Canvas dimensions and starting point
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    point = [0.2 * canvasWidth, 0.4 * canvasWidth];
-    //Gather inputs into variables to use in calculations
-    iterations = Number(document.getElementById("iterations").value);
+    point = [0.2,0.4]
     //Create an empty Array for all plottable points
-    let pointsArrayX = new Array();
-    let pointsArrayY = new Array();
+    pointsArrayX = new Array();
+    pointsArrayY = new Array();
     //Calculate each point that needs plaotting
     for (i=0 ; i<iterations ; i++) {
         let x = Math.random()
@@ -44,45 +49,24 @@ function simulate() {
                 break;
         }
         //Assigns all the x and y values of our points to arrays
-        pointsArrayX.push(point[0])
-        pointsArrayY.push(point[1])
+        pointsArrayX[i] = point[0]
+        pointsArrayY[i] = point[1]
     }
-    
-    //Find the dimensions of the canvas based on max and min values
-    let maxX = pointsArrayX[0];
-    let maxY = pointsArrayY[0];
-    let minX = pointsArrayX[0];
-    let minY = pointsArrayY[0];
-    for (j=1 ; j<pointsArrayX.length ; j++) {
-        if (pointsArrayX[j] > maxX) {
-            maxX = pointsArrayX[j]
-        }
+    //Fitting the points onto Canvas
+    let distances = new Array()
+    for (i=0 ; i<iterations ; i++) {
+        distances[i] = distanceFormula(pointsArrayX[i],pointsArrayY[i])
     }
-    for (j=1 ; j<pointsArrayY.length ; j++) {
-        if (pointsArrayY[j] > maxY) {
-            maxY = pointsArrayY[j]
-        }
-    }
-    for (j=1 ; j<pointsArrayX.length ; j++) {
-        if (pointsArrayX[j] < minX) {
-            minX = pointsArrayX[j]
-        }
-    }
-    for (j=1 ; j<pointsArrayY.length ; j++) {
-        if (pointsArrayY[j] < minY) {
-            minY = pointsArrayY[j]
-        }
-    }
-    canvas.height = roundUp100(maxY) - roundDown100(minY)
-    canvas.width = roundUp100(maxX) - roundDown100(minX)
-    //Shift all points so they all appear on the canvas
-    for (i=0 ; i<pointsArrayX.length ; i++) {
-        pointsArrayX[i] -= roundDown100(minX)
-        pointsArrayY[i] -= roundDown100(minY)
-     }
-    //Reflect the image up right
-    for (i=0 ; i<pointsArrayY.length ; i++) {
-        pointsArrayY[i] = (pointsArrayY[i] * -1) + (roundUp100(maxY) - roundDown100(minY))
+    let max = distances.reduce(function(a, b) {
+        return Math.max(a, b);
+    }, 0);
+    for (i=0 ; i<iterations ; i++) {
+        pointsArrayX[i] *= (0.5 * canvas.width) / max;
+        pointsArrayX[i] += (0.5 * canvas.width);
+        pointsArrayY[i] *= (0.5 * canvas.height) / max;
+        pointsArrayY[i] *= -1
+        pointsArrayY[i] += (0.5 * canvas.height);
+        
     }
     //Plot the points
     for (i=0 ; i<iterations ; i++) {
@@ -112,3 +96,8 @@ function roundUp100 (n) {
 function roundDown100 (n) {
     return Math.floor( n / 5 ) * 5
 }
+
+function distanceFormula(x,y) {
+    return Math.sqrt(Math.pow(x,2) + Math.pow(y,2))
+}
+
