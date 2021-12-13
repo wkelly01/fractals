@@ -9,9 +9,9 @@ canvas.width=window.innerHeight;
 let pointsArrayX, pointsArrayY //arrays to hold points
 let fillColor //??
 let point //starting point
-let iterations = 500000 //Number of iterations of the random walks
+let iterations = 50000 //Number of iterations of the random walks
 
-setInterval (simulate , 1000)
+setInterval (simulate , 3000)
 //simulate()
 
 function T1(x,y) {
@@ -73,18 +73,19 @@ function simulate() {
         ctx.beginPath();
         switch (true) {
             case i <= iterations / 3:
-                fillColor = "blue";
+                fillColor = "#73999a";
                 break;
             case i <= 2 * iterations / 3:
-                fillColor = "red";
+                fillColor = "#abf0ff";
                 break;
             case i <= 3 *iterations / 3:
-                fillColor = "green";
+                fillColor = "#c6fbff";
                 break;
         }
-        ctx.arc(pointsArrayX[i], pointsArrayY[i], 0.05, 0, 2 * Math.PI);
+        ctx.arc(pointsArrayX[i], pointsArrayY[i], 0.05 * (canvas.height / max), 0, 2 * Math.PI);
         ctx.fillStyle = fillColor;
         ctx.fill();
+        ctx.strokeStyle = fillColor;
         ctx.stroke();
     }
 }
@@ -100,4 +101,3 @@ function roundDown100 (n) {
 function distanceFormula(x,y) {
     return Math.sqrt(Math.pow(x,2) + Math.pow(y,2))
 }
-
