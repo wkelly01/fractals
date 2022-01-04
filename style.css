@@ -27,6 +27,7 @@ table {
 }
 td.inside {
     padding: 15px;
+    width: 50%;
 }
 
 img {
