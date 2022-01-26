@@ -2,8 +2,8 @@
 let canvasGraph = document.getElementById("GraphCanvas");
 let ctx = canvasGraph.getContext("2d");
 //set canvas height based on window size
-canvasGraph.height= window.innerHeight * 0.7;
-canvasGraph.width = window.innerHeight * 0.7;
+canvasGraph.height= window.innerHeight * 0.68;
+canvasGraph.width = window.innerHeight * 0.68;
 
 //declaration of global variabls
 let pointsArrayX, pointsArrayY, distances //arrays to hold points and distances
@@ -112,8 +112,8 @@ function drawGraph( dataArr ){
     //Creating canvas for chart... eventuall go and change context to ctxChart
     var canvasChart = document.getElementById( "ChartCanvas" );  
     var context = canvasChart.getContext( "2d" );
-    canvasChart.width = window.innerWidth;
-    canvasChart.height = window.innerHeight * 0.3
+    canvasChart.width = window.innerWidth; * 0.95
+    canvasChart.height = window.innerHeight * 0.28
     // declare graph start and end  
     var GRAPH_TOP = 25/450 * canvasChart.height;  
     var GRAPH_BOTTOM = 375/450 * canvasChart.height;  
