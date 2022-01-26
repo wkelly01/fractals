@@ -112,7 +112,7 @@ function drawGraph( dataArr ){
     //Creating canvas for chart... eventuall go and change context to ctxChart
     var canvasChart = document.getElementById( "ChartCanvas" );  
     var context = canvasChart.getContext( "2d" );
-    canvasChart.width = window.innerWidth; * 0.95
+    canvasChart.width = window.innerWidth * 0.95
     canvasChart.height = window.innerHeight * 0.28
     // declare graph start and end  
     var GRAPH_TOP = 25/450 * canvasChart.height;  
