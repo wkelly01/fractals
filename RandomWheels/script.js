@@ -9,7 +9,7 @@ canvasGraph.width = window.innerHeight * 0.68;
 let pointsArrayX, pointsArrayY, distances //arrays to hold points and distances
 let fillColor //?? why do you exist
 let point //starting point
-let iterations = 500000 //Number of iterations of the random walks
+let iterations = 100000 //Number of iterations of the random walks
 
 setInterval (simulate , 3000)
 //simulate()
@@ -193,7 +193,7 @@ function drawGraph( dataArr ){
     for( var i = 1; i < arrayLen; i++ ){  
         context.lineTo( GRAPH_WIDTH / arrayLen * i + GRAPH_LEFT, ( GRAPH_HEIGHT - dataArr[ i ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
         // draw reference value for day of the week  
-        if ((i + 1) % 100000 == 0){
+        if ((i + 1) % (iterations / 5 )  == 0){
         context.fillText( ( i + 1 ), GRAPH_WIDTH / arrayLen * i + GRAPH_LEFT, GRAPH_BOTTOM + 25/450*canvasChart.height);
         }
     }  
