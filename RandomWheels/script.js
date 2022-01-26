@@ -9,7 +9,7 @@ canvasGraph.width = window.innerHeight * 0.68;
 let pointsArrayX, pointsArrayY, distances //arrays to hold points and distances
 let fillColor //?? why do you exist
 let point //starting point
-let iterations = 200 //Number of iterations of the random walks
+let iterations = 50000 //Number of iterations of the random walks
 
 setInterval (simulate , 1)
 //simulate()
