@@ -127,7 +127,7 @@ function drawGraph(dataPoints,r){
     let canvasGraph = document.getElementById("GraphCanvas");
     let context = canvasGraph.getContext("2d");
     canvasGraph.width = window.innerWidth * 0.475;
-    canvasGraph.length= window.innerLength* 0.5;
+    canvasGraph.height= window.innerHeight * 0.5;
     
     let GRAPH_TOP = 0.10 * canvasGraph.height;
     let GRAPH_BOT = 0.90 * canvasGraph.height;
