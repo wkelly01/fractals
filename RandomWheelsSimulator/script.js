@@ -168,12 +168,37 @@ function drawGraph(dataPoints,r){
     let maxFreq = maxVal(frequency)
         
     // draw Bars
+    context.font = "16px Arial";
     for(i=0 ; i<16 ; i++){
         context.fillRect(GRAPH_LEFT + (i/16) * GRAPH_WIDTH,
                      GRAPH_BOT - (frequency[i]/maxFreq) * GRAPH_HEIGHT,
                      (1/16) * GRAPH_WIDTH,
                      (frequency[i]/maxFreq) * GRAPH_HEIGHT
                     )
+        //Add frequency counts to the top of the bars
+        rotateText(frequency[i],
+                   GRAPH_LEFT + (i/16) * GRAPH_WIDTH,
+                   GRAPH_BOT - (frequency[i]/maxFreq) * GRAPH_HEIGHT,
+                   90, context, 10,20)
     }
+    //Label the x axis
+    for(i=0 ; i<=16 ; i++){
+        rotateText(m * i/16,
+                   GRAPH_LEFT + (i/16 * GRAPH_WIDTH),
+                   GRAPH_BOT,
+                   -30,context, 7,15)
+    }
+    //Label the y axis
+    rotateText("Frequency",
+               GRAPH_LEFT,
+               GRAPH_BOT - GRAPH_HEIGHT / 2,
+               90, context,0,-5)
+}
 
+function rotateText(text,x,y,angle,context,xNudge=0,yNudge=0){
+    context.save();
+    context.translate(x,y);
+    context.rotate(-Math.PI * angle / 180);
+    context.fillText(text,xNudge,yNudge);
+    context.restore();
 }
