@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+}
+
+.set1 {
+    width: 25%;
+}
+
+.set2 {
+    width: 50%;
+    text-align: justify;
+}
+
+#fun {
+    visibility: hidden;
+}
+.step2 {
+    text-align: justify;
+    visibility: hidden;
+}
+
+#step3 {
+    text-align: center;
+}
