@@ -1,7 +1,7 @@
 console.clear()
 //number of graphs to graph
 let c, ctx, l;
-//pointX[] = [x,y,currentDist,minDist,maxDist]\
+//pointX[] = [x,y,currentDist,minDist,maxDist,polarDegree]
 //pointAnalysis = [AbsMaxDist, AbsMeanDist, MeanMaxDist]
 let point = new Object()
 point.step0 = [[0.2,0.4]]
@@ -9,6 +9,7 @@ point.step0analysis = []
 for (i=2 ; i<=4 ; i++){
     point.step0[0][i]=distanceForm(point.step0[0])
 }
+point.step0[0][5] = polarDegree(point.step0[0][0] , point.step0[0][1])
 
 function doTheThing(n){
     document.getElementById("header").remove()
@@ -33,32 +34,38 @@ function doTheThing(n){
     //     g.appendChild(h)
     // }
     analysis(n)
+    for (k=0 ; k<=n ; k++) {
+        eval('sortMyData(point.step'+k+')');
+        eval('uniquenessCheck(point.step'+k+')');
+        eval('console.log(point.step' + k + '.length)')
+    }
     let table  = document.querySelector("#data")
     for (i=0 ; i <= n ; i++){
         var row = table.insertRow(i);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
+        eval('st = point.step'+i+'.length')
         h = document.createElement("canvas")
         eval('h.id = "c'+i+'"')
         cell1.appendChild(h)
         d1 = document.createElement("div")
-        eval('d1.innerHTML = "Step: "+i+""')
+        eval('d1.innerHTML = "Step: "+i+": "+st+" unique points out of " + Math.pow(3,i)')
         cell2.appendChild(d1)
         d2 = document.createElement("div")
-        eval('d2.innerHTML = "Max Distance: "+point.step'+i+'analysis[0]')
+        eval('d2.innerHTML = "Max Distance of the path: "+point.step'+i+'analysis[0]')
         cell2.appendChild(d2)
         d3 = document.createElement("div")
-        eval('d3.innerHTML = "Max Distance: "+point.step'+i+'analysis[1]')
+        eval('d3.innerHTML = "Min Distance of the path: "+point.step'+i+'analysis[1]')
         cell2.appendChild(d3)
         d4 = document.createElement("div")
         d4.innerHTML = "Points:"
         cell2.appendChild(d4)
-        for ( j=0 ; j < Math.pow(3,i) ; j++){
+        for ( j=0 ; j < st ; j++){
             p1 = document.createElement("div")
             eval('x = point.step'+i+'['+j+'][0]')
             eval('y = point.step'+i+'['+j+'][1]')
             eval('r = point.step'+i+'['+j+'][2]')
-            theta = polarDegree(x,y)
+            eval('theta = point.step'+i+'['+j+'][5]')
             p1.innerHTML = "("+x+","+y+") || ("+r+","+theta+"°)"
             cell2.appendChild(p1)
         }
@@ -109,6 +116,7 @@ function func1 (arr, arrSeed) {
         } else {
             arr[i][4] = arrSeed[i/3][4]
         }
+        arr[i][5] = polarDegree(arr[i][0],arr[i][1])
     arr[i+1] = new Array()
         T2(arrSeed[i/3][0],arrSeed[i/3][1],arr[i+1])
         arr[i+1][2]=distanceForm(arr[i+1])
@@ -122,6 +130,7 @@ function func1 (arr, arrSeed) {
         } else {
             arr[i+1][4] = arrSeed[i/3][4]
         }
+        arr[i+1][5] = polarDegree(arr[i+1][0],arr[i+1][1])
     arr[i+2] = new Array()
         T3(arrSeed[i/3][0],arrSeed[i/3][1],arr[i+2])
         arr[i+2][2]=distanceForm(arr[i+2])
@@ -135,6 +144,7 @@ function func1 (arr, arrSeed) {
         } else {
             arr[i+2][4] = arrSeed[i/3][4]
         }
+        arr[i+2][5] = polarDegree(arr[i+2][0],arr[i+2][1])
     }
 }
 function func2(arr,color="black"){
@@ -192,29 +202,52 @@ function analysis(n){
 }
 function polarDegree(x,y){
     if (x >= 0 && y >= 0) {
-        return Math.atan(y/x) * (180/Math.PI)
+        return strip(Math.atan(y/x) * (180/Math.PI))
     } else if (x >= 0 && y <= 0) {
-        return Math.atan(y/x) * (180/Math.PI) + 360
+        return strip(Math.atan(y/x) * (180/Math.PI) + 360)
     } else {
-        return Math.atan(y/x) * (180/Math.PI) + 180
+        return strip(Math.atan(y/x) * (180/Math.PI) + 180)
     }
 }
 //Transformation functions BEGIN
 function T1(x,y,arr) {
-    arr[0] = ((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y));
-    arr[1] = ((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y));
+    arr[0] = strip(((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y)));
+    arr[1] = strip(((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)));
 }
 function T2(x,y,arr) {
-    arr[0] = ((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y)) + (1/2);
-    arr[1] = ((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) + (1/2);
+    arr[0] = strip(((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y)) + (1/2));
+    arr[1] = strip(((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) + (1/2));
 }
 function T3(x,y,arr) {
-    arr[0] = ((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y)) - (1/2);
-    arr[1] = ((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) - (1/2);
+    arr[0] = strip(((Math.cos(Math.PI / 3) * x) - (Math.sin(Math.PI / 3) * y)) - (1/2));
+    arr[1] = strip(((Math.sin(Math.PI / 3) * x) + (Math.cos(Math.PI / 3) * y)) - (1/2));
 }
 //Transformation functions END
 
 
 function distanceForm(arr){
-    return Math.sqrt(Math.pow(arr[0],2) + Math.pow(arr[1],2))
+    return strip(Math.sqrt(Math.pow(arr[0],2) + Math.pow(arr[1],2)))
+}
+
+function strip(number) {
+    let p = Math.pow(10,15)
+    return (Math.round(number * p) / p).toFixed(7)
+}
+
+function uniquenessCheck(arrOfArr){
+    epsilon = 0.0000002
+    for (i = 0 ; i < arrOfArr.length ; i++) {
+        for ( j=i+1 ; j < arrOfArr.length ; ) {
+            if ((Math.abs(arrOfArr[i][0] - arrOfArr[j][0]) <=epsilon) && (Math.abs(arrOfArr[i][1] - arrOfArr[j][1]) <= epsilon)) {
+                arrOfArr.splice(j,1);
+            } else {
+                j++
+            }
+        }
+    }
+}
+
+function sortMyData(data){
+    const sortedData = data.sort((a, b) => a[2] - b[2])
+    data = sortedData
 }
