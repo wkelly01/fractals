@@ -85,6 +85,8 @@ function createPageTable(n){
         h = document.createElement("canvas")
             eval('h.id = "c'+i+'"')
             cell1.appendChild(h)
+        h = document.createElement("br")
+            cell1.appendChild(h)
         h = document.createElement("canvas")
             eval('h.id = "l'+i+'"')
             cell1.appendChild(h)
