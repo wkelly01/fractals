@@ -4,9 +4,9 @@ const colors = ["#2f4f4f","#2e8b57","#8b0000","#808000","#483d8b","#b03060","#ff
 
 let data = new Object();
 
-function doTheThing(n,rot,e1,f1,e2,f2){
+function doTheThing(n,rot,e1,f1,e2,f2,x,y){
     setUsUpThePage(rot,e1,f1,e2,f2)
-    createStarterData();
+    createStarterData(x,y);
     createPathPoints(n);
     analysisSteps(n);
     uniquenessPrune(n);
@@ -32,10 +32,10 @@ function setUsUpThePage(rot,e1,f1,e2,f2){
     f_2 = f2;
 }
 //~~Set up initial Step for Data Object
-function createStarterData(){
+function createStarterData(x,y){
     data.analysis = new Object();
     data.step0 = new Object();
-    data.step0.point1 = new point([0.2,0.4])
+    data.step0.point1 = new point([x,y])
 }
 //~~Create Points for each additional Step
 function createPathPoints(n){
@@ -208,7 +208,7 @@ function graphTheLegends(n){
     for (i=0 ; i<=n ; i++){
         c= document.getElementById("l"+i);
         ctx = c.getContext("2d");
-        c.width = window.innerHeight * 0.40
+        c.width = window.innerHeight * 0.50
         c.height= window.innerHeight * 0.05
         eval("la = data.analysis.step"+i+".GreatestUniqueCount")
         for (j=0 ; j<la.length ; j++){
@@ -229,7 +229,9 @@ function distanceFormula(arr){
 }
 //~~Finds the polar measure of a point in Degrees
 function polarDegree(arr){
-    if (arr[0] >= 0 && arr[1] >= 0) {
+    if (arr[0] == 0 && arr[1] == 0) {
+        return strip(0)
+    } else if (arr[0] >= 0 && arr[1] >= 0) {
         return strip(Math.atan(arr[1]/arr[0]) * (180/Math.PI))
     } else if (arr[0] >= 0 && arr[1] <= 0) {
         return strip(Math.atan(arr[1]/arr[0]) * (180/Math.PI) + 360)
@@ -250,22 +252,6 @@ function Py(y){
     return -(c.height * 0.5 * y / l) + (c.height * 0.5)
 }
 
-//~~Transformation Rules~~
-// function T1(arr) {
-//     let x = strip(((Math.cos(Math.PI / 3) * arr[0]) - (Math.sin(Math.PI / 3) * arr[1])));
-//     let y = strip(((Math.sin(Math.PI / 3) * arr[0]) + (Math.cos(Math.PI / 3) * arr[1])));
-//     return [x,y]
-// }
-// function T2(arr) {
-//     let x = strip(((Math.cos(Math.PI / 3) * arr[0]) - (Math.sin(Math.PI / 3) * arr[1])) + (1/2));
-//     let y = strip(((Math.sin(Math.PI / 3) * arr[0]) + (Math.cos(Math.PI / 3) * arr[1])) + (1/2));
-//     return [x,y]
-// }
-// function T3(arr) {
-//     let x = strip(((Math.cos(Math.PI / 3) * arr[0]) - (Math.sin(Math.PI / 3) * arr[1])) - (1/2));
-//     let y = strip(((Math.sin(Math.PI / 3) * arr[0]) + (Math.cos(Math.PI / 3) * arr[1])) - (1/2));
-//     return [x,y]
-// }
 function T1(arr) {
     let x = strip(((Math.cos(rotation) * arr[0]) - (Math.sin(rotation) * arr[1])));
     let y = strip(((Math.sin(rotation) * arr[0]) + (Math.cos(rotation) * arr[1])));
