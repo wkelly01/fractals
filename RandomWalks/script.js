@@ -133,7 +133,7 @@ function plotPoints() {
         for (i=0 ; i<iterations ; i++) {
             ctx.beginPath();
             colorPicker(i);
-            ctx.arc(pointsArrayX[i], pointsArrayY[i], 0.05, 0, 2 * Math.PI);
+            ctx.arc(pointsArrayX[i], pointsArrayY[i], 0.25, 0, 2 * Math.PI);
             ctx.fillStyle = fillColor;
             ctx.strokeStyle = fillColor;
             ctx.stroke()
