@@ -201,7 +201,7 @@ function graphTheGraphs(n){
                     a2 = step[currentArray[k]].UniquenessCounter
                     console.log(a2)
                     a3 = a1.indexOf(a2)
-                    color = colors[a3]
+                    color = colors[a3%colors.length]
                 }else {
                     color = "#D3D3D3"
                 }
