@@ -167,7 +167,7 @@ function graphTheGraphs(n){
         c.width = window.innerHeight * 0.50
         c.height= window.innerHeight * 0.50
 
-        ctx.fillStyle = "#8788EE"
+        ctx.fillStyle = "#FAF9F6"
         ctx.fillRect(0,0,c.width,c.height)
     //~~ x and y axes ~~//
         ctx.beginPath();  
