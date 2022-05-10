@@ -8,6 +8,8 @@ let T1S = T(S)
 let T2S = T(T1S)
 let T3S = T(T2S)
 let T4S = T(T3S)
+let T5S = T(T4S)
+let T6S = T(T5S)
 
 Hausdorff(S,T1S,"S","T<sup>1</sup>(S)")
 
@@ -16,6 +18,10 @@ Hausdorff(T1S,T2S,"T<sup>1</sup>(S)","T<sup>2</sup>(S)")
 Hausdorff(T2S,T3S,"T<sup>2</sup>(S)","T<sup>3</sup>(S)")
 
 Hausdorff(T3S,T4S,"T<sup>3</sup>(S)","T<sup>4</sup>(S)")
+
+Hausdorff(T4S,T5S,"T<sup>4</sup>(S)","T<sup>5</sup>(S)")
+
+Hausdorff(T5S,T6S,"T<sup>5</sup>(S)","T<sup>6</sup>(S)")
 
 
 function Hausdorff(S2,S1,a="a",b="b"){
