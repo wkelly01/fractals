@@ -23,6 +23,12 @@
   top: 160px;
 }
 
+.tastyGame {
+  position: fixed;
+  left: 500px;
+  top: 200px;
+}
+
 .reset {
   position: fixed;
   visibility: hidden;
