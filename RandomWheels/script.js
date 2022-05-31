@@ -11,7 +11,7 @@ let fillColor //?? why do you exist
 let point //starting point
 let iterations = 50000 //Number of iterations of the random walks
 
-setInterval (simulate , 1000)
+setInterval (simulate , 5000)
 //simulate()
 
 
