@@ -1,0 +1,39 @@
+.instructions {
+  position: fixed;
+  left: 500px;
+}
+.easyGame {
+  position: fixed;
+  left: 500px;
+  top: 40px;
+}
+.medGame {
+  position: fixed;
+  left: 500px;
+  top: 80px;
+}
+.hardGame {
+  position: fixed;
+  left: 500px;
+  top: 120px;
+}
+.extraHardGame {
+  position: fixed;
+  left: 500px;
+  top: 160px;
+}
+
+.reset {
+  position: fixed;
+  visibility: hidden;
+  left: 500px;
+  top: 40px;
+}
+.win {
+  visibility: hidden;
+}
+.playAgain {
+  position: fixed;
+  top: 40px;
+  left: 0px;
+}
