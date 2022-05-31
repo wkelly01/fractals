@@ -88,6 +88,7 @@ function gameSelect(x) {
     clickMe(a,b)
     gameSeed.push([a,b])
   }
+  checkForWin()
 }
 
 // function randClickFunc() {
