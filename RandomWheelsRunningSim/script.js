@@ -64,9 +64,10 @@ function simulate() {
     for (i=0 ; i<iterations ; i++) {
         distances[i] = distanceFormula(pointsArrayX[i],pointsArrayY[i])
     }
-    let max = distances.reduce(function(a, b) {
-        return Math.max(a, b);
-    }, 0);
+    //let max = distances.reduce(function(a, b) {
+    //    return Math.max(a, b);
+    //}, 0);
+    let max = 250
     for (i=0 ; i<iterations ; i++) {
         pointsArrayX[i] *= (0.5 * canvasGraph.width) / max;
         pointsArrayX[i] += (0.5 * canvasGraph.width);
