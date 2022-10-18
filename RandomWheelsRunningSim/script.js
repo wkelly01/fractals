@@ -15,7 +15,7 @@ let fillColor //?? why do you exist
 let point //starting point
 let iterations = 50000 //Number of iterations of the random walks
 
-setInterval (simulate , 1)
+setInterval (simulate , 1000)
 //simulate()
 
 
@@ -99,7 +99,7 @@ function simulate() {
     
     maxDistances[p] = maxValue(distances)
     p++
-    document.querySelector("#result").innerHTML = "The average maximum distance for " + p + " runs is " + meanVal(maxDistances)
+    document.querySelector("#result").innerHTML = "The average maximum distance for " + walks + " random walks for " + p + " runs is " + meanVal(maxDistances)
 }
 
 
