@@ -15,7 +15,7 @@ let fillColor //?? why do you exist
 let point //starting point
 let iterations = 50000 //Number of iterations of the random walks
 
-setInterval (simulate , 1000)
+setInterval (simulate , 5000)
 //simulate()
 
 
@@ -37,7 +37,7 @@ function T3(x,y) {
 function simulate() {
     //Reset the Canvas dimensions and starting point
     ctx.clearRect(0, 0, canvasGraph.width, canvasGraph.height);
-    point = [0.2,0.4]
+    point = [0,0]
     //Create an empty Array for all plottable points
     pointsArrayX = new Array();
     pointsArrayY = new Array();
