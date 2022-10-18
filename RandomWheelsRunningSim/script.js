@@ -99,7 +99,7 @@ function simulate() {
     
     maxDistances[p] = maxValue(distances)
     p++
-    document.querySelector("#result").innerHTML = "The average maximum distance for " + walks + " random walks for " + p + " runs is " + meanVal(maxDistances)
+    document.querySelector("#result").innerHTML = "The average maximum distance for " + iterations + " random walks for " + p + " runs is " + meanVal(maxDistances)
 }
 
 
